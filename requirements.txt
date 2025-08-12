@@ -1,0 +1,5 @@
+Flask
+nlpcloud
+python-dotenv
+Werkzeug
+gunicorn

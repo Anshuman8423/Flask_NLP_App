@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard - Flask NLP App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="navbar">
+    <h1>Flask NLP App</h1>
+    <div>
+        <span>Welcome, {{ user }}</span>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</div>
+
+<div class="container">
+    <h2>NLP Tasks</h2>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for msg in messages %}
+          <div class="alert">{{ msg }}</div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <select name="task" required>
+            <option value="">-- Select Task --</option>
+            <option value="sentiment">Sentiment Analysis</option>
+            <option value="summarization">Summarization</option>
+            <option value="ner">Named Entity Recognition (NER)</option>
+        </select>
+
+        <textarea name="text" placeholder="Enter your text here..." required></textarea>
+
+        <div id="ner-field" style="display:none;">
+            <input type="text" name="entity" placeholder="Entity to search (e.g. PERSON)">
+        </div>
+
+        <input type="submit" value="Run Task">
+    </form>
+
+    {% if result %}
+    <div class="result-box">
+        <h3>Result:</h3>
+        <pre>{{ result }}</pre>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    document.querySelector('select[name="task"]').addEventListener('change', function() {
+        document.getElementById('ner-field').style.display = this.value === 'ner' ? 'block' : 'none';
+    });
+</script>
+
+</body>
+</html>

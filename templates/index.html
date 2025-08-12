@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home - Flask NLP App</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="navbar">
+    <h1>Flask NLP App</h1>
+    <div>
+        <a href="{{ url_for('login') }}">Login</a>
+        <a href="{{ url_for('register') }}">Register</a>
+    </div>
+</div>
+
+<div class="container">
+    <h2>Welcome to NLP App</h2>
+    <p>This app allows you to perform NLP tasks like Sentiment Analysis, Summarization, and Named Entity Recognition.</p>
+</div>
+</body>
+</html>
